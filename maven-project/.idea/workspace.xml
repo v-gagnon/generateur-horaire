@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="adf6b838-09c8-465f-8777-e68279fc1f0c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/vincentgagnon/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../generateur_horaire_macOS.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../generateur_horaire_windows.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../images/mac_confidentialite_et_securite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../images/mac_message_erreur.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../images/mac_securite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/fenetre_generation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/fenetre_horaire.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/generateur.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/lecteur.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../videos/ajouter_cours.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../videos/generation_horaires.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../videos/supprimer_cours.mp4" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3C2XIdy6N5rnG3vLVjDZUcXt2b5" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.schedule-generator [clean,javafx:run].executor": "Run",
+    "Maven.schedule-generator [clean].executor": "Run",
+    "Maven.schedule-generator [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
+    "Maven.schedule-generator [org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean" />
+      <command value="mvn clean javafx:run" />
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="adf6b838-09c8-465f-8777-e68279fc1f0c" name="Changes" comment="" />
+      <created>1775584560152</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1775584560152</updated>
+      <workItem from="1775584561585" duration="2068000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
