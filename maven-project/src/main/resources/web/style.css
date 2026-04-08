@@ -1,0 +1,136 @@
+/* Structure globale */
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    box-sizing: border-box;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+section {
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+h3 {
+    margin-top: 0;
+    font-size: 1.2em;
+}
+
+/* Layout du formulaire (Section 1) */
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.course-base-info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.inline-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.inline-group input[type="text"] {
+    width: 300px;
+}
+
+.group-card {
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.group-header {
+    background: #f8f9fa;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.group-content {
+    display: none; /* Caché par défaut */
+    padding: 15px;
+    border-top: 1px solid #ddd;
+}
+
+.group-content.visible {
+    display: block; /* Devient visible au clic */
+}
+
+.period-row {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.danger-btn { background: #ff4d4d; color: white; border: none; padding: 5px; cursor: pointer; }
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+/* Layout du tableau de consultation (Section 2) */
+.courses-board {
+    display: flex;
+    flex-direction: row;
+    gap: 20px; /* Espace entre la colonne gauche et droite */
+}
+
+.course-column {
+    flex: 1; /* Les deux colonnes prennent la même largeur (50/50) */
+    border: 1px dashed #aaa;
+    padding: 15px;
+}
+
+.course-list {
+    list-style-type: square;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.course-list li {
+    margin-bottom: 5px;
+}
+
+/* Layout de la génération (Section 3) */
+.generation-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inline-group input[type="number"] {
+    width: 40px;
+}
+
+@media (max-width: 600px) {
+    .courses-board {
+        flex-direction: column;
+    }
+}

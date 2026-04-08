@@ -6,7 +6,65 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>JavaFX page</h1>
+<div class="main-container">
+
+    <section class="form-section">
+        <h2>Ajout d'un cours</h2>
+        <div class="course-base-info">
+            <div class="inline-group">
+                <label for="sigleCours">Sigle :</label>
+                <input type="text" id="sigleCours" placeholder="ex: MAT1000">
+            </div>
+            <div class="inline-group">
+                <label for="nomCours">Sigle :</label>
+                <input type="text" id="nomCours" placeholder="ex: Analyse 1">
+            </div>
+            <div class="inline-group">
+                <label for="coursObligatoire">Obligatoire :</label>
+                <input type="checkbox" id="coursObligatoire">
+            </div>
+        </div>
+
+        <div id="groupsContainer">
+        </div>
+
+        <div class="button-group">
+            <button type="button" onclick="addGroup()">+ Ajouter un Groupe</button>
+            <button type="button" class="primary-btn" onclick="submitCourse()">Ajouter au tableau</button>
+        </div>
+    </section>
+
+    <section class="table-section">
+        <h2>Liste des cours</h2>
+        <div class="courses-board">
+            <div class="course-column">
+                <h3>Obligatoires</h3>
+                <ul id="mandatoryList"></ul>
+            </div>
+            <div class="course-column">
+                <h3>Optionnels</h3>
+                <ul id="optionalList"></ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="generation-section">
+        <h2>Génération de l'horaire</h2>
+        <div class="generation-controls">
+            <div class="inline-group">
+                <label for="numOptionnels">Nombre de cours optionnels à inclure :</label>
+                <input type="number" id="numOptionnels" name="numOptionnels" min="0" value="0">
+            </div>
+
+            <div class="button-group">
+                <button type="button">Sauvegarder</button>
+                <button type="button">Reset</button>
+                <button type="button" class="primary-btn">Générer horaires</button>
+            </div>
+        </div>
+    </section>
+
+</div>
 <script src="script.js"></script>
 </body>
 </html>

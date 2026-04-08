@@ -23,7 +23,7 @@ public class Main extends Application {
         }
 
         Scene scene = new Scene(webView, 1024, 768);
-        stage.setTitle("My Web-Based Application");
+        stage.setTitle("Générateur d'horaires");
         stage.setScene(scene);
         stage.show();
     }
