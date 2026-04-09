@@ -16,7 +16,7 @@
                 <input type="text" id="sigleCours" placeholder="ex: MAT1000">
             </div>
             <div class="inline-group">
-                <label for="nomCours">Sigle :</label>
+                <label for="nomCours">Nom :</label>
                 <input type="text" id="nomCours" placeholder="ex: Analyse 1">
             </div>
             <div class="inline-group">
@@ -30,7 +30,7 @@
 
         <div class="button-group">
             <button type="button" onclick="addGroup()">+ Ajouter un Groupe</button>
-            <button type="button" class="primary-btn" onclick="submitCourse()">Ajouter au tableau</button>
+            <button type="button" onclick="submitCourse()">Ajouter au tableau</button>
         </div>
     </section>
 
@@ -46,6 +46,9 @@
                 <ul id="optionalList"></ul>
             </div>
         </div>
+
+        <div id="detailsContainer">
+        </div>
     </section>
 
     <section class="generation-section">
@@ -53,14 +56,18 @@
         <div class="generation-controls">
             <div class="inline-group">
                 <label for="numOptionnels">Nombre de cours optionnels à inclure :</label>
-                <input type="number" id="numOptionnels" name="numOptionnels" min="0" value="0">
+                <input type="number" id="numOptionnels" name="numOptionnels" min="0" max="15" value="0">
             </div>
 
-            <div class="button-group">
-                <button type="button">Sauvegarder</button>
-                <button type="button">Reset</button>
-                <button type="button" class="primary-btn">Générer horaires</button>
-            </div>
+            <button type="button">Générer horaires</button>
+        </div>
+    </section>
+
+    <section class="save-section">
+        <div class="button-group">
+            <button type="button">Charger</button>
+            <button type="button">Sauvegarder</button>
+            <button type="button" onclick="confirmReset()">Réinitialiser</button>
         </div>
     </section>
 
