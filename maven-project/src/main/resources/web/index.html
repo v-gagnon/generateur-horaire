@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="main-container">
+<div class="form-container">
 
     <section class="form-section">
         <h2>Ajout d'un cours</h2>
@@ -29,7 +29,7 @@
         </div>
 
         <div class="button-group">
-            <button type="button" onclick="addGroup()">+ Ajouter un Groupe</button>
+            <button type="button" onclick="addGroup()">+ Ajouter un groupe</button>
             <button type="button" onclick="submitCourse()">Ajouter au tableau</button>
         </div>
     </section>
@@ -59,7 +59,7 @@
                 <input type="number" id="numOptionnels" name="numOptionnels" min="0" max="15" value="0">
             </div>
 
-            <button type="button">Générer horaires</button>
+            <button type="button" onclick="sendBufferToJava()">Générer horaires</button>
         </div>
     </section>
 
@@ -72,6 +72,22 @@
     </section>
 
 </div>
+
+<div class="horaires-container hidden">
+    <div class="schedule-nav" id="scheduleNav"></div>
+
+    <div class="schedule-grid" id="scheduleGrid"></div>
+
+    <div id="noScheduleMessage" class="no-schedule-msg">
+        <h2>Aucun horaire valide</h2>
+    </div>
+
+    <div class="button-group schedule-actions">
+        <button type="button" onclick="returnToForm()">Modifier les cours</button>
+        <button type="button" id="btnEffacer" onclick="deleteCurrentSchedule()">Effacer</button>
+    </div>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>

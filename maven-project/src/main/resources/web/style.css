@@ -8,14 +8,6 @@ body {
     box-sizing: border-box;
 }
 
-.main-container {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
 section {
     border: 1px solid #ccc;
     padding: 20px;
@@ -38,6 +30,22 @@ h3 {
     justify-content: center;
     gap: 15px;
     margin-top: 10px;
+}
+
+/* =========================================================================
+Page form
+========================================================================= */
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.form-container.hidden {
+    display: none;
 }
 
 /* =========================================================================
@@ -173,4 +181,102 @@ Section génération
 
 .inline-group input[type="number"] {
     width: 40px;
+}
+
+/* =========================================================================
+Page horaires
+========================================================================= */
+
+.horaires-container.hidden {
+    display: none;
+}
+
+.horaires-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.schedule-nav {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    width: 100%;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.schedule-nav button {
+    padding: 8px 16px;
+    cursor: pointer;
+    background: #aaa;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.schedule-nav button:hover {
+    background: #f0f4f8;
+}
+
+.schedule-nav button.active {
+    background: #a4cef3;
+}
+
+.schedule-grid {
+    display: grid;
+    grid-template-columns: 40px repeat(5, 180px);
+    background-color: #fdfdfd;
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+.day-header {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 0;
+    border-bottom: 2px solid #ccc;
+    background: #f4f4f4;
+    box-sizing: border-box;
+}
+
+.time-label {
+    text-align: right;
+    padding-right: 5px;
+    font-size: 0.85em;
+    color: #666;
+    border-right: 2px solid #ccc;
+}
+
+.grid-cell {
+    border-bottom: 1px dashed #e0e0e0;
+    border-right: 1px dashed #e0e0e0;
+    box-sizing: border-box;
+}
+
+.class-block {
+    padding: 5px;
+    box-sizing: border-box;
+    color: white;
+    font-size: 0.85em;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    z-index: 10;
+}
+
+.no-schedule-msg {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    color: #666;
+}
+
+.schedule-actions {
+    margin-top: 30px;
 }

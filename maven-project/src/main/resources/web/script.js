@@ -1,8 +1,14 @@
+/*Variables du form*/
 let coursesBuffer = [];
 /*  Objet cours: String sigle, String nom, boolean estObligatoire, Array groupes
     Objet groupe: String nom, Array periodes
     Objet période: String jour, String début, String fin */
 let groupCount = 0;
+
+/*Variables de génération*/
+let generatedSchedules = [];
+let currentScheduleIndex = 0;
+const CLASS_COLORS = ['#4A90E2', '#E94A3F', '#F5A623', '#7ED321', '#BD10E0', '#50E3C2', '#F8E71C', '#8B572A', '#9B9B9B', '#417505'];
 
 //Helper de addPeriod()
 function getHourOptions() {
@@ -75,7 +81,7 @@ function addGroup() {
             <div class="periods-container"></div>
             <div class="button-group">
                 <button type="button" onclick="addPeriod(this)">+ Ajouter une période</button>
-                <button type="button" onclick="deleteGroup(this)">X Supprimer Groupe</button>
+                <button type="button" onclick="deleteGroup(this)">- Supprimer groupe</button>
             </div>
         </div>
     `;
@@ -242,7 +248,7 @@ function toggleDetails(index) {
         </div>
         <div class="button-group">
             <button onclick="toggleDetails(-1)">Cacher</button>
-            <button onclick="toggleDetails(-1); editCourse(${index})">Modifier</button>
+            <button onclick="editCourse(${index})">Modifier</button>
         </div>
     `;
 }
@@ -253,6 +259,7 @@ function editCourse(index) {
         return;
     }
 
+    toggleDetails(-1);
     const cours = coursesBuffer[index];
 
     resetForm();
@@ -282,4 +289,163 @@ function editCourse(index) {
 
     coursesBuffer.splice(index, 1);
     renderList();
+}
+
+//Envoie le contenu de coursesBuffer vers le backend
+function sendBufferToJava() {
+    if (window.javaApp) {
+        const jsonData = JSON.stringify(coursesBuffer);
+        let nbCoursOptionnels = parseInt(document.getElementById("numOptionnels").value) || 0;
+        if (nbCoursOptionnels < 0) nbCoursOptionnels = 0;
+
+        window.javaApp.transferBuffer(jsonData, nbCoursOptionnels);
+    } else {
+        alert("Erreur: Le pont Java n'est pas connecté.");
+    }
+}
+
+// Fonction appelée directement par Java
+function displaySchedules(jsonString) {
+    generatedSchedules = JSON.parse(jsonString);
+    currentScheduleIndex = 0;
+
+    document.querySelector('.form-container').classList.add('hidden');
+    document.querySelector('.horaires-container').classList.remove('hidden');
+
+    updateScheduleView();
+}
+
+function hourLimit() {
+    let maxHour = 0;
+    const currentSchedule = generatedSchedules[currentScheduleIndex];
+    currentSchedule.forEach(groupe => {
+        groupe.periodes.forEach(periode => {
+            const hFin = parseInt(periode.hFin);
+            if ( hFin > maxHour) maxHour = hFin;
+        })
+    })
+    return Math.max(19, maxHour);
+}
+
+// Moteur de rendu de la grille
+function updateScheduleView() {
+    const nav = document.getElementById('scheduleNav');
+    const grid = document.getElementById('scheduleGrid');
+    const noScheduleMsg = document.getElementById('noScheduleMessage');
+    const btnEffacer = document.getElementById('btnEffacer');
+
+    const nbHourRows = (hourLimit() - 8) * 2 + 1;
+    grid.style.gridTemplateRows = `40px repeat(${nbHourRows}, 30px)`;
+
+    nav.innerHTML = '';
+    grid.innerHTML = '';
+
+    // CAS 1 : Aucun horaire
+    if (generatedSchedules.length === 0) {
+        grid.style.display = 'none';
+        noScheduleMsg.style.display = 'flex';
+        btnEffacer.disabled = true;
+        return;
+    }
+
+    // CAS 2 : Affichage normal
+    grid.style.display = 'grid';
+    noScheduleMsg.style.display = 'none';
+    btnEffacer.disabled = false;
+
+    // 1. Dessin de la barre latérale
+    generatedSchedules.forEach((_, idx) => {
+        const btn = document.createElement('button');
+        btn.textContent = `Horaire ${idx + 1}`;
+        if (idx === currentScheduleIndex) btn.classList.add('active');
+        btn.onclick = () => {
+            currentScheduleIndex = idx;
+            updateScheduleView();
+        };
+        nav.appendChild(btn);
+    });
+
+    // 2. Construction de la grille (Axes et Quadrillé)
+
+    // 2.a En-tête vide au-dessus des heures
+    const timeHeader = document.createElement('div');
+    timeHeader.className = 'day-header';
+    timeHeader.style.borderRight = '2px solid #ccc';
+    grid.appendChild(timeHeader);
+
+    // 2.b En-têtes des jours
+    const days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"];
+    days.forEach(day => {
+        const header = document.createElement('div');
+        header.className = 'day-header';
+        header.textContent = day;
+        grid.appendChild(header);
+    });
+
+    // 2.c Axe des heures
+    for (let i = 0; i < nbHourRows; i+=2) {
+        const hour = 8 + i/2;
+        const timeLabel = document.createElement('div');
+        timeLabel.className = 'time-label';
+        timeLabel.textContent = `${hour}:00`;
+        timeLabel.style.gridRow = `${i + 2} / ${i + 4}`;
+        timeLabel.style.gridColumn = '1';
+        grid.appendChild(timeLabel);
+    }
+
+    // 2.d Quadrillé
+    for (let i = 0; i < nbHourRows; i++) {
+        for (let j = 0; j < 5; j++) {
+            const gridCell = document.createElement('div');
+            gridCell.className = 'grid-cell';
+            gridCell.style.gridRow = `${i + 2}`;
+            gridCell.style.gridColumn = `${j + 2}`;
+            grid.appendChild(gridCell);
+        }
+    }
+
+    // 3. Insertion des blocs de cours
+    const currentSchedule = generatedSchedules[currentScheduleIndex];
+    const courseColorMap = {};
+    let colorIndex = 0;
+
+    currentSchedule.forEach(groupe => {
+        if (!courseColorMap[groupe.sigle]) {
+            courseColorMap[groupe.sigle] = CLASS_COLORS[colorIndex % CLASS_COLORS.length];
+            colorIndex++;
+        }
+
+        groupe.periodes.forEach(p => {
+            const block = document.createElement('div');
+            block.className = 'class-block';
+            block.style.backgroundColor = courseColorMap[groupe.sigle];
+
+            const column = days.indexOf(p.jour) + 2;
+            const rowStart = (parseInt(p.hDebut) - 8) * 2 + (parseInt(p.mDebut) / 30) + 2;
+            const rowEnd = (parseInt(p.hFin) - 8) * 2 + (parseInt(p.mFin) / 30) + 2;
+
+            block.style.gridColumn = `${column}`;
+            block.style.gridRow = `${rowStart} / ${rowEnd}`;
+
+            block.innerHTML = `<span><b>${groupe.sigle}</b> (${groupe.groupe})</span>-<b>${groupe.nom}</b>`;
+            grid.appendChild(block);
+        });
+    });
+}
+
+function deleteCurrentSchedule() {
+    if (generatedSchedules.length > 0) {
+        generatedSchedules.splice(currentScheduleIndex, 1);
+
+        if (currentScheduleIndex >= generatedSchedules.length) {
+            currentScheduleIndex = Math.max(0, generatedSchedules.length - 1);
+        }
+
+        updateScheduleView();
+    }
+}
+
+function returnToForm() {
+    document.querySelector('.horaires-container').classList.add('hidden');
+    document.querySelector('.form-container').classList.remove('hidden');
 }
