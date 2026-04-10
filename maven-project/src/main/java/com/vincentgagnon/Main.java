@@ -1,8 +1,11 @@
 package com.vincentgagnon;
 
 import java.net.URL;
+import java.util.Optional;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -69,6 +72,16 @@ public class Main extends Application {
             return confirmAlert.showAndWait()
                     .filter(response -> response == ButtonType.OK)
                     .isPresent();
+        });
+
+        webEngine.setPromptHandler(promptData -> {
+            TextInputDialog dialog = new TextInputDialog(promptData.getDefaultValue());
+            dialog.setTitle("Entrée requise");
+            dialog.setHeaderText(null);
+            dialog.setContentText(promptData.getMessage());
+
+            Optional<String> result = dialog.showAndWait();
+            return result.orElse(null);
         });
     }
 }

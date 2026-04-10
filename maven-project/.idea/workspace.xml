@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="adf6b838-09c8-465f-8777-e68279fc1f0c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/Cours.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/DataBridge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/Generator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/Groupe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/Periode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/DataBridge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/DataBridge.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/web/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/web/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/vincentgagnon/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/vincentgagnon/GeneratorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,28 +38,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.schedule-generator [clean,javafx:run].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.schedule-generator [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.schedule-generator [mvn,clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.schedule-generator [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.schedule-generator [org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.schedule-generator [test].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.schedule-generator [clean,javafx:run].executor": "Run",
+    "Maven.schedule-generator [clean].executor": "Run",
+    "Maven.schedule-generator [mvn,clean].executor": "Run",
+    "Maven.schedule-generator [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
+    "Maven.schedule-generator [org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile].executor": "Run",
+    "Maven.schedule-generator [test].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn mvn clean" />
@@ -87,7 +83,7 @@
       <workItem from="1775658571638" duration="8360000" />
       <workItem from="1775772629551" duration="5120000" />
       <workItem from="1775823814019" duration="10774000" />
-      <workItem from="1775849280449" duration="6948000" />
+      <workItem from="1775849280449" duration="8833000" />
     </task>
     <servers />
   </component>

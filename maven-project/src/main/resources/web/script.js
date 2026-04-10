@@ -291,6 +291,69 @@ function editCourse(index) {
     renderList();
 }
 
+// Sauvegarde le contenu actuel du buffer
+function saveData() {
+    if (!window.javaApp) {
+        alert("Erreur: Le pont Java n'est pas connecté.");
+        return;
+    }
+    if (coursesBuffer.length === 0) {
+        alert("Aucun cours à sauvegarder.");
+        return;
+    }
+
+    const fileName = prompt("Entrez un nom pour la sauvegarde :");
+    if (fileName && fileName.trim() !== "") {
+        const jsonData = JSON.stringify(coursesBuffer);
+        window.javaApp.saveSession(jsonData, fileName.trim());
+        alert(`La session "${fileName.trim()}" a été sauvegardée.`);
+    }
+}
+
+// Charge une session et met à jour l'interface
+function loadData() {
+    if (!window.javaApp) {
+        alert("Erreur: Le pont Java n'est pas connecté.");
+        return;
+    }
+
+    // Récupère la liste des fichiers depuis Java
+    const sessionsJson = window.javaApp.getAvailableSessions();
+    const sessions = JSON.parse(sessionsJson);
+
+    if (sessions.length === 0) {
+        alert("Aucune session sauvegardée trouvée dans le dossier data.");
+        return;
+    }
+
+    // Construit un menu texte simple via prompt
+    let menuMsg = "Entrez le numéro de la session à charger :\n\n";
+    sessions.forEach((sessionName, index) => {
+        menuMsg += `${index + 1}. ${sessionName}\n`;
+    });
+
+    const choice = prompt(menuMsg);
+    if (!choice) return; // L'utilisateur a cliqué sur Annuler
+
+    const index = parseInt(choice) - 1;
+
+    if (index >= 0 && index < sessions.length) {
+        const fileName = sessions[index];
+        // Récupère les données depuis Java
+        const loadedJson = window.javaApp.loadSession(fileName);
+
+        if (loadedJson) {
+            // Reconstruit la structure de données
+            coursesBuffer = JSON.parse(loadedJson);
+            resetForm(); // S'assure que le formulaire est propre
+            renderList(); // Affiche les cours dans les colonnes
+            alert(`Session "${fileName}" chargée avec succès !`);
+        }
+    } else {
+        alert("Sélection invalide.");
+    }
+}
+
 //Envoie le contenu de coursesBuffer vers le backend
 function sendBufferToJava() {
     if (window.javaApp) {
@@ -298,7 +361,7 @@ function sendBufferToJava() {
         let nbCoursOptionnels = parseInt(document.getElementById("numOptionnels").value) || 0;
         if (nbCoursOptionnels < 0) nbCoursOptionnels = 0;
 
-        window.javaApp.transferBuffer(jsonData, nbCoursOptionnels);
+        window.javaApp.sendSchedules(jsonData, nbCoursOptionnels);
     } else {
         alert("Erreur: Le pont Java n'est pas connecté.");
     }
@@ -334,13 +397,6 @@ function updateScheduleView() {
     const noScheduleMsg = document.getElementById('noScheduleMessage');
     const btnEffacer = document.getElementById('btnEffacer');
 
-    const nbHourRows = (hourLimit() - 8) * 2 + 1;
-    grid.style.gridTemplateRows = `40px repeat(${nbHourRows}, 30px)`;
-
-    nav.innerHTML = '';
-    grid.innerHTML = '';
-
-    // CAS 1 : Aucun horaire
     if (generatedSchedules.length === 0) {
         grid.style.display = 'none';
         noScheduleMsg.style.display = 'flex';
@@ -348,7 +404,12 @@ function updateScheduleView() {
         return;
     }
 
-    // CAS 2 : Affichage normal
+    const nbHourRows = (hourLimit() - 8) * 2 + 1;
+    grid.style.gridTemplateRows = `40px repeat(${nbHourRows}, 30px)`;
+
+    nav.innerHTML = '';
+    grid.innerHTML = '';
+
     grid.style.display = 'grid';
     noScheduleMsg.style.display = 'none';
     btnEffacer.disabled = false;

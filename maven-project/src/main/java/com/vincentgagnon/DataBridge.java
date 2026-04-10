@@ -5,10 +5,17 @@ import javafx.application.Platform;
 import javafx.scene.web.WebEngine;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.charset.StandardCharsets;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class DataBridge {
 
@@ -22,7 +29,7 @@ public class DataBridge {
         this.generator = new Generator();
     }
 
-    public void transferBuffer(String jsonBuffer, int nbCoursOptionnels) {
+    public void sendSchedules(String jsonBuffer, int nbCoursOptionnels) {
         try {
             Cours[] repertoireCours = mapper.readValue(jsonBuffer, Cours[].class);
             for (Cours coursActuel : repertoireCours) {
@@ -38,10 +45,10 @@ public class DataBridge {
 
         } catch (Exception e) {
             System.err.println("Erreur critique lors de la lecture du JSON : " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
+    // Helper de sendSchedules
     public String formatEscapedJson(Groupe[][] horaires) throws JsonProcessingException {
         if (horaires.length == 0) return "[]";
 
@@ -61,5 +68,57 @@ public class DataBridge {
 
         String resultJson = mapper.writeValueAsString(formattedSchedules);
         return resultJson.replace("\"", "\\\"").replace("'", "\\'");
+    }
+
+    // Sauvegarde le JSON envoyé par le JS dans un fichier
+    public void saveSession(String jsonData, String fileName) {
+        try {
+            Path dirPath = Paths.get("src", "main", "resources", "data");
+            if (!Files.exists(dirPath)) {
+                Files.createDirectories(dirPath);
+            }
+            Path filePath = dirPath.resolve(fileName + ".json");
+            Files.write(filePath, jsonData.getBytes(StandardCharsets.UTF_8));
+            System.out.println("Session sauvegardée: " + filePath.toAbsolutePath());
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la sauvegarde : " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    // Retourne un JSON contenant la liste des noms de fichiers disponibles
+    public String getAvailableSessions() {
+        try {
+            Path dirPath = Paths.get("src", "main", "resources", "data");
+            if (!Files.exists(dirPath)) {
+                return "[]";
+            }
+            try (Stream<Path> stream = Files.list(dirPath)) {
+                List<String> files = stream
+                        .filter(file -> !Files.isDirectory(file))
+                        .map(Path::getFileName)
+                        .map(Path::toString)
+                        .filter(name -> name.endsWith(".json"))
+                        .map(name -> name.replace(".json", ""))
+                        .collect(Collectors.toList());
+                return mapper.writeValueAsString(files);
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la lecture du dossier : " + e.getMessage());
+            return "[]";
+        }
+    }
+
+    // Lit le fichier demandé et retourne son contenu (la chaîne JSON)
+    public String loadSession(String fileName) {
+        try {
+            Path filePath = Paths.get("src", "main", "resources", "data", fileName + ".json");
+            if (Files.exists(filePath)) {
+                return new String(Files.readAllBytes(filePath), StandardCharsets.UTF_8);
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors du chargement : " + e.getMessage());
+        }
+        return "[]";
     }
 }
