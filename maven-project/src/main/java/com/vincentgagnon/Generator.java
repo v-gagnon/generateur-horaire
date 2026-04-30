@@ -96,12 +96,14 @@ public class Generator {
             
             horaireLoop: for (Groupe groupe: horaire) {
                 for (Periode periode : groupe.periodes) {
-                    if (periodes.contains(periode)) {
-                        horaireValide = false;
-                        break horaireLoop;
-                    }
-                    else {
-                        periodes.add(periode);
+                    for (Periode bloc: periode.getBlocsHoraire()) {
+                        if (periodes.contains(bloc)) {
+                            horaireValide = false;
+                            break horaireLoop;
+                        }
+                        else {
+                            periodes.add(bloc);
+                        }
                     }
                 }
             }

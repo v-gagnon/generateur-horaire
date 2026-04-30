@@ -347,7 +347,6 @@ function loadData() {
             coursesBuffer = JSON.parse(loadedJson);
             resetForm(); // S'assure que le formulaire est propre
             renderList(); // Affiche les cours dans les colonnes
-            alert(`Session "${fileName}" chargée avec succès !`);
         }
     } else {
         alert("Sélection invalide.");

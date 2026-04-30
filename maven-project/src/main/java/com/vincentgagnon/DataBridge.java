@@ -105,6 +105,7 @@ public class DataBridge {
             }
         } catch (Exception e) {
             System.err.println("Erreur lors de la lecture du dossier : " + e.getMessage());
+            e.printStackTrace();
             return "[]";
         }
     }

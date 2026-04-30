@@ -256,10 +256,9 @@ Page horaires
 }
 
 .class-block {
-    padding: 5px;
     box-sizing: border-box;
     color: white;
-    font-size: 0.85em;
+    font-size: 0.75em;
     overflow: hidden;
     display: flex;
     flex-direction: column;

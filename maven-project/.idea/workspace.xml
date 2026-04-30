@@ -7,9 +7,10 @@
     <list default="true" id="adf6b838-09c8-465f-8777-e68279fc1f0c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/DataBridge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/DataBridge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/Generator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/Periode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/Periode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/web/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/web/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +27,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3,
   &quot;fromUser&quot;: false
@@ -38,31 +42,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "Maven.schedule-generator [clean,javafx:run].executor": "Run",
-    "Maven.schedule-generator [clean].executor": "Run",
-    "Maven.schedule-generator [mvn,clean].executor": "Run",
-    "Maven.schedule-generator [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
-    "Maven.schedule-generator [org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile].executor": "Run",
-    "Maven.schedule-generator [test].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.schedule-generator [clean,javafx:run].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.schedule-generator [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.schedule-generator [mvn,clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.schedule-generator [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.schedule-generator [org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.schedule-generator [test].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn mvn clean" />
@@ -83,7 +87,17 @@
       <workItem from="1775658571638" duration="8360000" />
       <workItem from="1775772629551" duration="5120000" />
       <workItem from="1775823814019" duration="10774000" />
-      <workItem from="1775849280449" duration="8833000" />
+      <workItem from="1775849280449" duration="9077000" />
+      <workItem from="1775866908978" duration="4155000" />
+      <workItem from="1775877446654" duration="588000" />
+      <workItem from="1775941778432" duration="366000" />
+      <workItem from="1776028055263" duration="608000" />
+      <workItem from="1776270597507" duration="148000" />
+      <workItem from="1776368390035" duration="612000" />
+      <workItem from="1776375615959" duration="1207000" />
+      <workItem from="1776385623724" duration="300000" />
+      <workItem from="1776387250543" duration="419000" />
+      <workItem from="1776388983190" duration="620000" />
     </task>
     <servers />
   </component>

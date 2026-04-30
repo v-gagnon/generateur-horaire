@@ -1,6 +1,9 @@
 package com.vincentgagnon;
 
+import java.util.LinkedList;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Periode {
@@ -18,6 +21,14 @@ public class Periode {
         setFin(fin);
     }
 
+    public Periode(String jour, int hDebut, int mDebut, int hFin, int mFin) {
+        this.jour = jour;
+        this.hDebut = hDebut;
+        this.mDebut = mDebut;
+        this.hFin = hFin;
+        this.mFin = mFin;
+    }
+
     @JsonProperty("debut")
     public void setDebut(String debut) {
         String[] parts = debut.split(":");
@@ -30,6 +41,21 @@ public class Periode {
         String[] parts = fin.split(":");
         this.hFin = Integer.parseInt(parts[0]);
         this.mFin = Integer.parseInt(parts[1]);
+    }
+
+    @JsonIgnore
+    public Periode[] getBlocsHoraire() {
+        LinkedList<Periode> blocsHoraire = new LinkedList<>();
+
+        int startTime = hDebut * 60 + mDebut;
+        int endTime = hFin * 60 + mFin;
+
+        for (int currentTime = startTime; currentTime < endTime; currentTime += 30) {
+            Periode bloc = new Periode(jour, (int)(currentTime / 60), currentTime % 60, (int)((currentTime + 30) / 60), (currentTime + 30) % 60);
+            blocsHoraire.add(bloc);
+        }
+
+        return blocsHoraire.toArray(new Periode[0]);
     }
 
     @Override
