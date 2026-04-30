@@ -5,9 +5,6 @@ Cette application permet de générer automatiquement tous les horaires possible
 ## Utilisation
 
 En éxécutant le fichier, vous arrivez sur la fenêtre de création. Vous pouvez entrez des cours en y ajoutant différents groupes, un à un. Une fois un cours entré, vous pouvez appuyer sur **Sauvegarder** pour pouvoir fermer l'application et conserver vos données. Pour générer les horaires, allez au bas de la page et cliquez sur **Générer les horaires**. Ceci vous emmènera vers la fenêtre de gestion de horaires, où vous pouvez retirer progressivement des horaires pour conserver celui qui vous convient le mieux.
-
-Pour voir le fonctionnement plus en détails, allez consulter les vidéos dans [videos](videos).
-
 ---
 
 ## Installation

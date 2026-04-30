@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="512" height="512" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- Background -->
+    <circle fill="#004080" cx="256" cy="256" r="250" />
+
+    <!-- Calendar Body -->
+    <g stroke="#ffffff" fill="none" transform="scale(1.2) translate(-50, -20)">
+        <!-- Main Outline -->
+        <rect x="156" y="136" width="200" height="250" rx="20" stroke-width="16" />
+
+        <!-- Header Separator -->
+        <line x1="156" y1="200" x2="356" y2="200" stroke-width="16" />
+
+        <!-- Top Rings/Binders -->
+        <line x1="206" y1="110" x2="206" y2="150" stroke-width="16" stroke-linecap="round" />
+        <line x1="306" y1="110" x2="306" y2="150" stroke-width="16" stroke-linecap="round" />
+
+        <!-- Calendar Grid -->
+        <path d="M 176 262 h 160 M 176 324 h 160 M 222 220 v 146 M 288 220 v 146" stroke-width="12" stroke-linecap="round" />
+    </g>
+
+    <!-- Cogwheel (Top Left) -->
+    <g fill="#ffffff" transform="translate(380, 121)">
+        <circle cx="0" cy="0" r="30" />
+
+        <!-- 8 Teeth -->
+        <rect x="-10" y="-42" width="20" height="84" rx="4" transform="rotate(0)" />
+        <rect x="-10" y="-42" width="20" height="84" rx="4" transform="rotate(45)" />
+        <rect x="-10" y="-42" width="20" height="84" rx="4" transform="rotate(90)" />
+        <rect x="-10" y="-42" width="20" height="84" rx="4" transform="rotate(135)" />
+
+        <!-- Inner hole (matches background color to create a cutout effect) -->
+        <circle cx="0" cy="0" r="14" fill="#004080" />
+    </g>
+
+</svg>
