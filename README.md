@@ -1,45 +1,71 @@
-# Générateur d'Horaires
+# Générateur d'Horaires Universitaires
 
-Cette application permet de générer automatiquement tous les horaires possibles à partir d'une liste de cours obligatoires et optionnels. Elle a été conçue pour gérer les horaires sur une seule semaine, alors elle ne prend pas en compte les dates de début et de fin des cours.
+Une application de bureau permettant de générer, visualiser et gérer facilement ses horaires de cours. Conçue pour éviter les conflits d'horaires et optimiser la sélection des cours obligatoires et optionnels.
 
-## Utilisation
+## Téléchargement et Installation
 
-En éxécutant le fichier, vous arrivez sur la fenêtre de création. Vous pouvez entrez des cours en y ajoutant différents groupes, un à un. Une fois un cours entré, vous pouvez appuyer sur **Sauvegarder** pour pouvoir fermer l'application et conserver vos données. Pour générer les horaires, allez au bas de la page et cliquez sur **Générer les horaires**. Ceci vous emmènera vers la fenêtre de gestion de horaires, où vous pouvez retirer progressivement des horaires pour conserver celui qui vous convient le mieux.
+Aucune installation d'environnement de programmation ou de machine virtuelle Java n'est requise. L'application est livrée sous forme d'exécutable natif.
+
+1. Rendez-vous dans l'onglet **[Releases](../../releases)** situé à droite de la page du dépôt.
+2. Téléchargez la version correspondant à votre système d'exploitation :
+   * **macOS** : Téléchargez le fichier `.dmg`. Double-cliquez et glissez l'application dans votre dossier *Applications*.
+   * **Windows** : Téléchargez le fichier `.exe` et lancez l'installation.
+   * **Linux / Ubuntu** : Téléchargez et installez le fichier `.deb`.
+3. Lancez l'application.
+
+## Fonctionnalités principales
+
+* **Saisie des paramètres** : Ajout de cours avec leurs différents groupes (théorie, travaux pratiques) et spécification de leur statut (obligatoire ou optionnel).
+* **Génération algorithmique** : Le moteur calcule automatiquement toutes les combinaisons d'horaires valides sans conflit.
+* **Visualisation** : Affichage des horaires générés sous forme de calendrier.
+* **Sauvegarde de session** : Enregistrement de l'état de travail pour un chargement ultérieur. Les données sont sauvegardées localement de manière sécurisée et isolée.
+* **Gestion des données** : Interface intégrée pour la suppression de sessions ou la réinitialisation complète de l'environnement de l'application.
+
+## Architecture et Technologies
+
+Ce projet utilise une architecture hybride, séparant le traitement algorithmique de la présentation visuelle, encapsulée dans une application de bureau.
+
+* **Backend (Java / JavaFX)** : Gère la logique d'affaires, l'algorithme pour la résolution des contraintes d'horaires, et l'accès au système de fichiers local.
+* **Frontend (HTML / CSS / JavaScript Vanilla)** : Fournit une interface utilisateur dynamique, affichée au sein d'une `WebView`.
+* **Communication inter-processus (DataBridge)** : Une classe Java liée dynamiquement au moteur JavaScript permet une communication bidirectionnelle et asynchrone entre l'interface Web et le contexte d'exécution Java.
+* **Gestion d'état (Jackson)** : Sérialisation et désérialisation du modèle de données au format JSON pour les sauvegardes et la transmission inter-contexte.
+
+## Compilation locale
+
+Instructions destinées aux développeurs souhaitant cloner le code source ou compiler leur propre exécutable.
+
+### Prérequis
+* Java JDK (ex: OpenJDK 21 ou ultérieur)
+* Apache Maven
+
+### Instructions
+
+1. **Cloner le dépôt :**
+   ```bash
+   git clone https://github.com/v-gagnon/generateur-horaire.git
+   cd Generateur-Horaires
+   ```
+
+2. **Générer le Fat JAR :**
+   Le projet utilise `maven-shade-plugin` pour empaqueter le code source compilé et toutes ses dépendances (incluant les bibliothèques externes et les ressources web) en un unique fichier exécutable.
+   ```bash
+   mvn clean package
+   ```
+
+3. **Créer l'exécutable natif (via jpackage) :**
+   Il est impératif de cibler la classe `Launcher` plutôt que la classe principale héritant de `Application` afin d'éviter les erreurs d'initialisation des modules JavaFX lors de l'exécution hors module.
+   
+   Exemple de commande pour macOS :
+   ```bash
+   jpackage \
+     --type dmg \
+     --input target/ \
+     --name "GenerateurHoraires" \
+     --main-jar schedule-generator-1.0-SNAPSHOT.jar \
+     --main-class com.vincentgagnon.Launcher \
+     --icon deploy/logo.icns
+   ```
+   *(Ajustez l'argument `--type` selon l'environnement de compilation cible : `exe` sous Windows, `deb` sous une distribution Debian/Ubuntu).*
+
 ---
-
-## Installation
-
-### Pour **macOS**
-
-1. Téléchargez le fichier [generateur_horaire_macOS.zip](generateur_horaire_macOS.zip) en cliquant sur le fichier puis sur **Download raw file**.
-
-2. Décompressez le fichier zip.
-
-3. Faites un **clic droit** sur le fichier `GenerateurHoraire.app`, puis sélectionnez **Ouvrir**. GateKeeper va empêcher d'ouvrir le fichier puisqu'il n'a pas de license. Appuyer sur **Ok**.
-
-<img src="images/mac_message_erreur.png" width="300">
-
-4. Allez dans **Réglages**, sous **Confidentialité et sécurité**. Vers le bas de la page, sous **Sécurité**, vous devriez voir le message: "L'élément GenerateurHoraire a été bloqué pour protéger votre Mac". Cliquez sur **Ouvrir quand même**.
-
-<img src="images/mac_securite.png" width="500">
-
-> Une fois ouverte la première fois, vous pourrez ensuite la lancer normalement avec un double-clic.
-
----
-
-### Pour **Windows**
-
-1. Téléchargez le fichier [generateur_horaire_windows.zip](generateur_horaire_windows.zip) en cliquant sur le fichier puis sur **Download raw file**.
-2. Décompressez le fichier zip.
-3. Double-cliquez sur `GenerateurHoraire.exe`.
-4. Si Windows affiche un avertissement de sécurité, cliquez sur **Informations supplémentaires** puis **Exécuter quand même**.
-
----
-
-## Fichier de sauvegarde
-
-Lors de son exécution, l'application crée automatiquement un dossier : `Downloads/GenerateurHoraire`.
-Ce dossier contient vos cours et groupes enregistrés dans le fichier `cours.json`.
-Vous pouvez supprimer ce dossier en tout temps si vous n’utilisez plus l’application, mais vous perdrez vos cours sauvegardés. 
-
-Vous pouvez gardez plusieurs horaires en mémoire en renommant le fichier `cours.json`. Pour que l'application fonctionne correctement, vous ne devez avoir qu'un seul fichier nommer `cours.json` dans le dossier `GenerateurHoraire`. Lorsque vous voulez réutiliser un fichier de cours que vous avez renommé, remettez le dans le dossier `GenerateurHoraire` sous le nom `cours.json`.
+Créé par Vincent Gagnon - Étudiant en Mathématiques et Informatique (UdeM)
