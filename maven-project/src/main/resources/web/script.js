@@ -322,7 +322,7 @@ function loadData() {
     const sessions = JSON.parse(sessionsJson);
 
     if (sessions.length === 0) {
-        alert("Aucune session sauvegardée trouvée dans le dossier data.");
+        alert("Aucune session sauvegardée n'a été trouvée.");
         return;
     }
 
@@ -347,6 +347,45 @@ function loadData() {
             coursesBuffer = JSON.parse(loadedJson);
             resetForm(); // S'assure que le formulaire est propre
             renderList(); // Affiche les cours dans les colonnes
+        }
+    } else {
+        alert("Sélection invalide.");
+    }
+}
+
+// Affiche un menu pour supprimer des sessions spécifiques ou le dossier complet
+function manageSaves() {
+    if (!window.javaApp) {
+        alert("Erreur: Le pont Java n'est pas connecté.");
+        return;
+    }
+
+    // Récupère la liste des fichiers depuis Java
+    const sessionsJson = window.javaApp.getAvailableSessions();
+    const sessions = JSON.parse(sessionsJson);
+
+    // Construit un menu texte simple via prompt
+    let menuMsg = "Entrez le numéro de l'action à effectuer :\n\n";
+    menuMsg += "0. Tout supprimer\n";
+    sessions.forEach((sessionName, index) => {
+        menuMsg += `${index + 1}. Supprimer "${sessionName}"\n`;
+    });
+
+    const choice = prompt(menuMsg);
+    if (!choice) return; // L'utilisateur a cliqué sur Annuler
+
+    const index = parseInt(choice);
+
+    if (index === 0) {
+        if (confirm("ATTENTION : Voulez-vous vraiment supprimer toutes vos sauvegardes ? Cette action est irréversible.")) {
+            window.javaApp.deleteAllSessions();
+            alert("Toutes les sessions ont été supprimées.");
+        }
+    } else if (index > 0 && index <= sessions.length) {
+        const fileName = sessions[index - 1];
+        if (confirm(`Voulez-vous vraiment supprimer la session "${fileName}" ?`)) {
+            window.javaApp.deleteSession(fileName);
+            alert(`La session "${fileName}" a été supprimée.`);
         }
     } else {
         alert("Sélection invalide.");

@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="adf6b838-09c8-465f-8777-e68279fc1f0c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/DataBridge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/DataBridge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/Generator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/Periode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vincentgagnon/Periode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/web/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/web/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/web/style.css" afterDir="false" />
-    </list>
+    <list default="true" id="adf6b838-09c8-465f-8777-e68279fc1f0c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,6 +91,7 @@
       <workItem from="1776385623724" duration="300000" />
       <workItem from="1776387250543" duration="419000" />
       <workItem from="1776388983190" duration="620000" />
+      <workItem from="1777558927271" duration="488000" />
     </task>
     <servers />
   </component>
