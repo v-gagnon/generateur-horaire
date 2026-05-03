@@ -1,4 +1,4 @@
-package com.vincentgagnon;
+package com.vincentgagnon.horaires;
 
 public class Cours {
     public String sigle;

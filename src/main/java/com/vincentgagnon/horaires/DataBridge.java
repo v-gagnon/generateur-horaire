@@ -1,4 +1,4 @@
-package com.vincentgagnon;
+package com.vincentgagnon.horaires;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import javafx.application.Platform;

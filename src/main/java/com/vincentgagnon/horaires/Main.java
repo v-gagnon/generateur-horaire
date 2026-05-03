@@ -1,4 +1,4 @@
-package com.vincentgagnon;
+package com.vincentgagnon.horaires;
 
 import java.net.URL;
 import java.util.Optional;
@@ -26,7 +26,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         connectHTML();
-        conifgureDataBridge();
+        configureDataBridge();
         conifgureMessages();
 
         Scene scene = new Scene(webView, 1024, 768);
@@ -45,7 +45,7 @@ public class Main extends Application {
         }
     }
 
-    public void conifgureDataBridge() {
+    public void configureDataBridge() {
         webEngine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
             if (newState == Worker.State.SUCCEEDED) {
                 JSObject window = (JSObject) webEngine.executeScript("window");

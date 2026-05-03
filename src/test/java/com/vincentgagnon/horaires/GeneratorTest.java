@@ -1,4 +1,4 @@
-package com.vincentgagnon;
+package com.vincentgagnon.horaires;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.vincentgagnon;
+package com.vincentgagnon.horaires;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

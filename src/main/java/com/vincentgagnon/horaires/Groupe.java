@@ -1,4 +1,4 @@
-package com.vincentgagnon;
+package com.vincentgagnon.horaires;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
